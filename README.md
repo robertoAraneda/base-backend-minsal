@@ -51,11 +51,19 @@ Para instalar el ORM `Prisma`
 $ npm install prisma --save-dev
 ```
 
-Inicializamos Prisma. Con este comando se cra un archivo `.env` y la carpeta `prisma` con el archivo `schema.prisma``
+Inicializamos Prisma. Con este comando se cra un archivo `.env` y la carpeta `prisma` con el archivo `schema.prisma`
 
 ```bash
 npx prisma init
 ```
+
+Modificamos el archivo con las credenciales de la base de datos `postgreSQL`.
+
+```text
+DATABASE_URL="postgresql://develop:develop@localhost:5432/base_backend_minsal?schema=public"
+```
+
+En esta cadena de conexión, `develop:develop` es el _usuario:contraseña_, y `base_backend_minsal` es el _nombre_ de la base de datos.
 
 Luego creamos la tabla User en el archivo `schema.prisma`
 
