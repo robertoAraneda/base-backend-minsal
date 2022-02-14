@@ -42,3 +42,54 @@ Comenzamos creando 2 módulos.
 $ nest g resource users
 $ nest g resource auth
 ```
+
+### Prisma ORM
+
+Para instalar el ORM `Prisma`
+
+```bash
+$ npm install prisma --save-dev
+```
+
+Inicializamos Prisma. Con este comando se cra un archivo `.env` y la carpeta `prisma` con el archivo `schema.prisma``
+
+```bash
+npx prisma init
+```
+
+Luego creamos la tabla User en el archivo `schema.prisma`
+
+```prisma
+model User {
+  id        Int     @default(autoincrement()) @id
+  email     String  @unique
+  run       String
+  name      String
+  password  String
+}
+```
+
+Luego ejecutamos el comando
+
+```bash
+npx prisma migrate dev --name init
+```
+
+Observarás una salida en la terminal:
+
+```bash
+$ /Users/robertoaraneda/Projects/MINSAL/backend-base/node_modules/.bin/prisma migrate dev --name init
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "base_backend_minsal", schema "public" at "localhost:5432"
+
+Applying migration `20220214235124_init`
+
+The following migration(s) have been created and applied from new schema changes:
+
+migrations/
+  └─ 20220214235124_init/
+    └─ migration.sql
+
+Your database is now in sync with your schema.
+```
