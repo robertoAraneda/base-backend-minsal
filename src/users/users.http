@@ -3,9 +3,32 @@ POST  http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "run": "15654738-7",
-  "name": "Roberto",
+  "run": "23546868-3",
+  "name": "Maxito",
   "password": "pass",
-  "email": "robaraneda@gmail.com"
+  "email": "maxito@gmail.com"
 }
+
+### GET users
+GET http://localhost:3000/users
+Accept: application/json
+
+### GET one user
+
+GET http://localhost:3000/users/1
+Accept: application/json
+
+### PATCH users
+
+PATCH http://localhost:3000/users/1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Roberto editadd"
+}
+### DELETE user
+
+DELETE http://localhost:3000/users/1
+Accept: application/json
 
