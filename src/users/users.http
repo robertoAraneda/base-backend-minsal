@@ -1,0 +1,11 @@
+### POST users
+POST  http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "run": "15654738-7",
+  "name": "Roberto",
+  "password": "pass",
+  "email": "robaraneda@gmail.com"
+}
+

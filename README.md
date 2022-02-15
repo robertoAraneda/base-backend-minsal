@@ -54,10 +54,10 @@ $ npm install prisma --save-dev
 Inicializamos Prisma. Con este comando se cra un archivo `.env` y la carpeta `prisma` con el archivo `schema.prisma`
 
 ```bash
-npx prisma init
+$ npx prisma init
 ```
 
-Modificamos el archivo con las credenciales de la base de datos `postgreSQL`.
+Modificamos el archivo `.env` con las credenciales de la base de datos `postgreSQL`.
 
 ```text
 DATABASE_URL="postgresql://develop:develop@localhost:5432/base_backend_minsal?schema=public"
@@ -80,7 +80,7 @@ model User {
 Luego ejecutamos el comando
 
 ```bash
-npx prisma migrate dev --name init
+$ npx prisma migrate dev --name init
 ```
 
 Observarás una salida en la terminal:
@@ -100,4 +100,58 @@ migrations/
     └─ migration.sql
 
 Your database is now in sync with your schema.
+```
+Creamos el módulo prisma para crear la clase service que será utilizado por el resto de los módulos.
+
+```bash
+$ nest g resource prisma
+```
+
+Creamos dos archivos en la carpeta filters, para gestionar los errores HTTP y de Prisma.
+
+Para crar los DTO, importamos:
+
+```bash
+$ npm install class-transformer class-validator
+```
+
+Para probar nuestra API creamos un archivo `.http` y agregamos el siguiente request:
+
+```http request
+### POST users
+POST  http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "run": "15654738-7",
+  "name": "Roberto",
+  "password": "pass",
+  "email": "robaraneda@gmail.com"
+}
+
+```
+
+y obtenemos el resultado:
+
+```bash
+POST http://localhost:3000/users
+
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 93
+ETag: W/"5d-+Um42hU4veDto7YiLFUiEXtjrmA"
+Date: Tue, 15 Feb 2022 00:49:13 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{
+  "id": 1,
+  "email": "robaraneda@gmail.com",
+  "run": "15654738-7",
+  "name": "Roberto",
+  "password": "pass"
+}
+
+Response code: 201 (Created); Time: 175ms; Content length: 93 bytes
 ```
